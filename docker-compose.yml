@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+     - MYSQL_ROOT_PASSWORD=admin123
+     - MYSQL_PASSWORD=admin123
+     - MYSQL_DATABASE=banco_de_usuarios
+    ports:
+      - "3306:3306"
