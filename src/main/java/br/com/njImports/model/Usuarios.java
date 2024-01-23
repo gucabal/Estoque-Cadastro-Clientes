@@ -12,10 +12,10 @@ import java.io.Serializable;
 @Table(name= "usuario")
 public class Usuarios implements Serializable {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "cpf", length = 11, nullable = true)
+    private String cpf;
 
     @Column(name = "nome_completo", length = 200, nullable = true)
     private String nome_completo;

@@ -38,4 +38,13 @@ public class UsuarioController {
     }
 
 
+    @PostMapping("/login")
+    public ResponseEntity loginUsuario(@RequestBody Usuarios usuario){
+        ResponseEntity<Object> valido = usuarioService.validarSenha(usuario);
+        return valido;
+
+
+    }
+
+
 }
