@@ -1,7 +1,8 @@
 package br.com.njImports.service;
 
-import br.com.njImports.Repository.IUsuario;
+import br.com.njImports.dto.UsuariosDTO;
 import br.com.njImports.model.Usuarios;
+import br.com.njImports.repository.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class UsuarioService {
 
     private IUsuario repository;
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     public UsuarioService(IUsuario repository, PasswordEncoder passwordEncoder) {
@@ -44,21 +48,20 @@ public class UsuarioService {
         return usuarioAlterado;
     }
 
-    public ResponseEntity<Object> validarSenha(Usuarios usuario) {
+    public ResponseEntity<Object> validarSenha(UsuariosDTO usuario) {
 
-        Optional<Usuarios> usuarioOptional = repository.findByCpf(usuario.getCpf());
+        UsuariosDTO usuarioOptional = repository.findByCpf(usuario.getCpf());
 
-        if (usuarioOptional.isPresent()) {
-            Usuarios usuarioEncontrado = usuarioOptional.get();
-
-            String senha = usuarioEncontrado.getSenha();
+        if (usuarioOptional != null) {
+            String senha = usuarioOptional.getSenha();
             Boolean valid = passwordEncoder.matches(usuario.getSenha(), senha);
 
             if (!valid) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
             }
 
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.OK).body(tokenService.gerartoken(usuario));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

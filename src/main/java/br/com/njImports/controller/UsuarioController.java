@@ -1,5 +1,6 @@
 package br.com.njImports.controller;
-import br.com.njImports.Repository.IUsuario;
+import br.com.njImports.dto.UsuariosDTO;
+import br.com.njImports.repository.IUsuario;
 import br.com.njImports.model.Usuarios;
 import br.com.njImports.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -9,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -45,7 +44,7 @@ public class UsuarioController {
 
 
     @PostMapping("/login")
-    public ResponseEntity loginUsuario(@Valid @RequestBody Usuarios usuario){
+    public ResponseEntity loginUsuario(@Valid @RequestBody UsuariosDTO usuario){
         ResponseEntity<Object> valido = usuarioService.validarSenha(usuario);
         return valido;
 

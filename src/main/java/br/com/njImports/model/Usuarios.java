@@ -3,11 +3,8 @@ package br.com.njImports.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.coyote.Response;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.http.ResponseEntity;
+
 
 import java.io.Serializable;
 
