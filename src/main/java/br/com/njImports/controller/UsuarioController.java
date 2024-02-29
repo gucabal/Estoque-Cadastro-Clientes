@@ -34,7 +34,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity cadastrarUsuario(@Valid @RequestBody Usuarios usuario){
-        return ResponseEntity.status(201).body(usuarioService.cadastrarUsuario(usuario));
+        return usuarioService.cadastrarUsuario(usuario);
     }
 
     @PutMapping("/alterar")
