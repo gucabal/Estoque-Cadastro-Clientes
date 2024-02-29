@@ -39,7 +39,7 @@ public class UsuarioController {
 
     @PutMapping("/alterar")
     public ResponseEntity alterarUsuario(@Valid @RequestBody Usuarios usuario){
-        return ResponseEntity.status(200).body(usuarioService.alterarUsuario(usuario));
+        return usuarioService.alterarUsuario(usuario);
     }
 
 

@@ -38,18 +38,22 @@ public class UsuarioService {
 
         if(repository.findByCpf(usuario.getCpf()) != null)
            return ResponseEntity.status(422).body("Cpf já possui cadastro. Por favor, tente fazer login ou recupere sua senha.");
-        
+
         String encoder = this.passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(encoder);
         Usuarios usuarioNovo = repository.save(usuario);
         return ResponseEntity.status(201).body(usuario);
     }
 
-    public Usuarios alterarUsuario(Usuarios usuario){
+    public ResponseEntity alterarUsuario(Usuarios usuario){
+        if(repository.findByCpf(usuario.getCpf()) == null)
+            return ResponseEntity.status(422).body("Usuário não cadastrado");
+
+
         String encoder = this.passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(encoder);
         Usuarios usuarioAlterado = repository.save(usuario);
-        return usuarioAlterado;
+        return ResponseEntity.status(200).body(usuarioAlterado);
     }
 
     public ResponseEntity<Object> validarSenha(UsuariosDTO usuario) {
