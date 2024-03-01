@@ -3,6 +3,7 @@ package br.com.njImports.config;
 import br.com.njImports.security.FilterToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +32,10 @@ public class TokenConfig {
                 .requestMatchers(HttpMethod.POST, "/autenticacao/login")
                 .permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuarios/cadastrar")
+                .permitAll()
+                .requestMatchers(HttpMethod.GET, "/actuator")
+                .permitAll()
+                .requestMatchers(HttpMethod.GET, "/actuator/prometheus")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
