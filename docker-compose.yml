@@ -1,11 +1,41 @@
 version: '3.4'
 
+networks:
+  aw-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  prometheus_data:
+  grafana_data:
+
 services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - prometheus_data:/prometheus
+      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - aw-network
+    ports:
+      - "9090:9090"
   db:
     image: mysql:latest
     environment:
-     - MYSQL_ROOT_PASSWORD=admin123
-     - MYSQL_PASSWORD=admin123
-     - MYSQL_DATABASE=banco_de_usuarios
+      - MYSQL_ROOT_PASSWORD=admin123
+      - MYSQL_PASSWORD=admin123
+      - MYSQL_DATABASE=banco_de_usuarios
+    volumes:
+      - mysql_data:/mysql
+    networks:
+      - aw-network
     ports:
       - "3306:3306"
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - grafana_data:/grafana
+    networks:
+      - aw-network
+    ports:
+      - "3000:3000"

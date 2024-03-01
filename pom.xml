@@ -73,7 +73,20 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-<!--		<dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.12.3</version>
+		</dependency>
+
+		<!--		<dependency>-->
 <!--			<groupId>io.jsonwebtoken</groupId>-->
 <!--			<artifactId>jjwt-api</artifactId>-->
 <!--			<version>0.11.2</version>-->
