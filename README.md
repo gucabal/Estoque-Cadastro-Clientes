@@ -48,10 +48,13 @@ Realize os testes por meio do Postman para compreender as regras dos microsservi
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* [Grafana](https://grafana.com/) - framework web utilizado para analisar métricas
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [Java](https://www.java.com/pt-BR/) - Linguagem utilizada
+* [Grafana](https://grafana.com/) - framework web utilizado para analisar métricas.
+* [Maven](https://maven.apache.org/) - Gerente de Dependência.
+* [Java](https://www.java.com/pt-BR/) - Linguagem utilizada.
 * [Spring Boot](https://spring.io/projects/spring-boot) - Utilizado junto com seus frameworks para desenvolver a aplicação, com segurança, praticidade, e baixo acoplamento.
+* [Docker](https://www.docker.com/) - Utilizado para implantar máquinas virtuais.
+* [MYSQL](https://www.mysql.com/) - Banco de dados utilizado.
+* [Spring Security](https://spring.io/projects/spring-security) - Utilizado para criptografar senhas, criar tokens de acesso, etc...
 
 
 
