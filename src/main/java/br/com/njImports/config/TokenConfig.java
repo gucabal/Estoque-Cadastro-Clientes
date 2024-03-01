@@ -30,8 +30,8 @@ public class TokenConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/autenticacao/login")
                 .permitAll()
-//                .requestMatchers(HttpMethod.POST, "/usuarios/cadastrar")
-//                .permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuarios/cadastrar")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .build();
