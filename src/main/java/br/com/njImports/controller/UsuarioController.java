@@ -34,22 +34,21 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity cadastrarUsuario(@Valid @RequestBody Usuarios usuario){
+        if(!usuario.getTelefone().matches("(^[0-9]{2})?(\\s|-)?(9?[0-9]{4})-?([0-9]{4}$)")){
+            return ResponseEntity.status(422).body(" O campo 'Telefone' deve conter ddd + 9 dígitos");
+        }
         return usuarioService.cadastrarUsuario(usuario);
     }
 
     @PutMapping("/alterar")
     public ResponseEntity alterarUsuario(@Valid @RequestBody Usuarios usuario){
+        if(!usuario.getTelefone().matches("(^[0-9]{2})?(\\s|-)?(9?[0-9]{4})-?([0-9]{4}$)")){
+            return ResponseEntity.status(422).body(" O campo 'Telefone' deve conter ddd + 9 dígitos");
+        }
         return usuarioService.alterarUsuario(usuario);
     }
 
 
-    @PostMapping("/login")
-    public ResponseEntity loginUsuario(@Valid @RequestBody UsuariosDTO usuario){
-        ResponseEntity<Object> valido = usuarioService.validarSenha(usuario);
-        return valido;
-
-
-    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
